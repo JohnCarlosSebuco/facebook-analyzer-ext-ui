@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Facebook Post Analyzer</title>
+  <style>
+    :root {
+      --primary: #1877f2;
+      --background: #ffffff;
+      --text: #1c1e21;
+      --border: #dddfe2;
+    }
+
+    body {
+      width: 350px;
+      margin: 0;
+      padding: 16px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--background);
+      color: var(--text);
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .logo {
+      width: 32px;
+      height: 32px;
+      margin-right: 12px;
+    }
+
+    h1 {
+      font-size: 18px;
+      margin: 0;
+      color: var(--primary);
+    }
+
+    .analyze-btn {
+      width: 100%;
+      padding: 12px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .analyze-btn:hover {
+      background: #1658d6;
+    }
+
+    .analyze-btn:disabled {
+      background: #a0a4ab;
+      cursor: not-allowed;
+    }
+
+    .loading-container {
+      display: none;
+      margin-top: 20px;
+    }
+
+    .spinner {
+      width: 24px;
+      height: 24px;
+      border: 3px solid rgba(0,0,0,0.1);
+      border-top-color: var(--primary);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto;
+    }
+
+    .extracted-text-container {
+      margin: 16px 0;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      display: none;
+    }
+
+    .extracted-text-header {
+      padding: 12px;
+      background: #f5f6f7;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .extracted-text-content {
+      padding: 12px;
+      max-height: 200px;
+      overflow-y: auto;
+      font-size: 14px;
+      line-height: 1.5;
+      background: white;
+    }
+
+    .analysis-container {
+      display: none;
+      margin-top: 16px;
+    }
+
+    .toggle-extracted {
+      background: none;
+      border: none;
+      color: var(--primary);
+      cursor: pointer;
+      font-size: 12px;
+      padding: 4px;
+    }
+
+    .analysis-content {
+      background: #f8f9fa;
+      padding: 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .error-message {
+      color: #dc3545;
+      background: #ffe6e6;
+      padding: 12px;
+      border-radius: 8px;
+      margin-top: 16px;
+      display: none;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <svg class="logo" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+    </svg>
+    <h1>Facebook Post Analysis</h1>
+  </div>
+
+  <button class="analyze-btn" id="analyzeBtn">
+    Analyze Post
+  </button>
+
+  <div class="loading-container" id="loading">
+    <div class="spinner"></div>
+  </div>
+
+  <div class="extracted-text-container" id="extractedContainer">
+    <div class="extracted-text-header">
+      <span>Extracted Text</span>
+      <button class="toggle-extracted" id="toggleExtracted">Hide</button>
+    </div>
+    <div class="extracted-text-content" id="extractedText"></div>
+  </div>
+
+  <div class="analysis-container" id="analysisContainer">
+    <div class="analysis-header">
+      <h2>Analysis Result</h2>
+      <button class="toggle-extracted" id="toggleAnalysisExtracted">View Extracted Text</button>
+    </div>
+    <div class="analysis-content" id="analysisContent"></div>
+  </div>
+
+  <div class="error-message" id="errorMessage"></div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

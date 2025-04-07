@@ -1,0 +1,24 @@
+{
+    "manifest_version": 3,
+    "name": "Facebook Post Analyzer",
+    "version": "1.0",
+    "description": "Analyze Facebook posts using Gemini AI",
+    "icons": {
+      "128": "icon.png"
+    },
+    "permissions": ["activeTab", "storage", "scripting"],
+    "host_permissions": ["*://*.facebook.com/*", "https://generativelanguage.googleapis.com/"],
+    "action": {
+      "default_popup": "popup.html",
+      "default_icon": "icon.png"
+    },
+    "background": {
+      "service_worker": "background.js"
+    },
+    "content_scripts": [
+      {
+        "matches": ["*://*.facebook.com/*"],
+        "js": ["content-script.js"]
+      }
+    ]
+  }
