@@ -2,6 +2,8 @@
 
 This project is a Chrome Extension that helps analyze Facebook posts for insights and patterns.
 
+![Project Preview](assets/preview.png)
+
 ## Creator
 This project was created by John Carlos Sebuco.
 
