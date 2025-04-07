@@ -1,7 +1,7 @@
-// Use your deployed backend URL here
+
 const BACKEND_URL = 'https://facebook-analyzer-ext-server.onrender.com/analyze';
 
-// Add this at the top for debugging
+
 console.log('Background script loaded');
 
 async function analyzeWithGemini(text) {
@@ -29,12 +29,12 @@ async function analyzeWithGemini(text) {
   }
 }
 
-// Message listener for the extension
+
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === "analyzeText") {
     analyzeWithGemini(request.text)
       .then(analysis => sendResponse(analysis))
       .catch(error => sendResponse(`Error: ${error.message}`));
-    return true; // Keep the message channel open
+    return true; 
   }
 });

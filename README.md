@@ -9,7 +9,7 @@ This project was created by John Carlos Sebuco.
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/your-username/facebook-post-analyzer.git
+git clone https://github.com/JohnCarlosSebuco/facebook-analyzer-ext-ui.git
 cd facebook-post-analyzer
 ```
 
